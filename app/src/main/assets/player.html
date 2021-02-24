@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Player</title>
+</head>
+<body>
+    <div id="player"></div>
+
+    <script>
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+            player = new YT.Player('player', {
+                height: '0',
+                width: '0',
+                videoId: 'null',
+                events: {
+                    'onReady': onPlayerReady,
+                    'onStateChange': onPlayerStateChange
+                }
+            });
+        }
+
+        function onPlayerReady(event) {
+        }
+
+        function onPlayerStateChange(event) {
+        }
+
+        function seekTo(time) {
+            player.seekTo(time);
+        }
+
+        function loadVideoById(id, time) {
+            player.loadVideoById(id, time, 'small');
+        }
+
+        function playVideo() {
+            player.playVideo();
+        }
+
+        function pauseVideo() {
+            player.pauseVideo();
+        }
+
+        function getCurrentTime() {
+            android.getCurrentTime(player.getCurrentTime());
+        }
+
+        function getPlayerState() {
+            android.getPlayerState(player.getPlayerState());
+        }
+
+    </script>
+</body>
+</html>

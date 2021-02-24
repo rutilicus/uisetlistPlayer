@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">uisetlistPlayer</string>
+    <string name="action_notice">NOTICE</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="main_fragment_label">Main Fragment</string>
+    <string name="notice_fragment_label">Notice Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="error_text">データの取得に失敗しました。</string>
+
+    <string name="notification_channel_id">uisetlist_notification</string>
+    <string name="notification_channel_name">バックグラウンド再生</string>
+</resources>
