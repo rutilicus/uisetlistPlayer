@@ -39,6 +39,8 @@ dependencies:
 
   universal_platform: ^1.0.0+1
 
+  awesome_notifications: any
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

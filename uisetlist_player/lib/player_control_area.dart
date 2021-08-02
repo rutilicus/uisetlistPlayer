@@ -34,31 +34,7 @@ class PlayerControlArea extends StatelessWidget {
             IconButton(
               icon: const Icon(Icons.skip_previous),
               onPressed: () {
-                List<Song> songs =
-                  Provider.of<RootChangeNotifier>(context, listen: false).songs;
-                int currentTime =
-                    Provider.of<RootChangeNotifier>(context, listen: false)
-                .currentTime;
-                int currentSongIndex =
-                Provider.of<RootChangeNotifier>(context, listen: false)
-                .currentSongIndex;
-
-                if (currentSongIndex >= 0 && currentSongIndex < songs.length) {
-                  if (currentTime - songs[currentSongIndex].time <= prevSongThres) {
-                    int nextSongIndex = (currentSongIndex + songs.length - 1) % songs.length;
-                    Provider.of<RootChangeNotifier>(context, listen: false)
-                        .webViewController?.evaluateJavascript(
-                        source: 'loadVideoById("${songs[nextSongIndex].movie.movieId}", ${songs[nextSongIndex].time});'
-                    );
-                    Provider.of<RootChangeNotifier>(context, listen: false)
-                        .setCurrentSongIndex(nextSongIndex);
-                  } else {
-                    Provider.of<RootChangeNotifier>(context, listen: false)
-                        .webViewController?.evaluateJavascript(
-                        source: 'loadVideoById("${songs[currentSongIndex].movie.movieId}", ${songs[currentSongIndex].time});'
-                    );
-                  }
-                }
+                Provider.of<RootChangeNotifier>(context, listen: false).seekPrev();
               },
             ),
             IconButton(
@@ -67,34 +43,13 @@ class PlayerControlArea extends StatelessWidget {
                     Icon(notifier.isPlaying ? Icons.pause : Icons.play_arrow),
               ),
               onPressed: () {
-                if (Provider.of<RootChangeNotifier>(context, listen: false).isPlaying) {
-                  Provider.of<RootChangeNotifier>(context, listen: false)
-                      .webViewController?.evaluateJavascript(
-                      source: 'pauseVideo();'
-                  );
-                } else {
-                  Provider.of<RootChangeNotifier>(context, listen: false)
-                      .webViewController?.evaluateJavascript(
-                      source: 'playVideo();'
-                  );
-                }
+                Provider.of<RootChangeNotifier>(context, listen: false).pausePlay();
               },
             ),
             IconButton(
               icon: const Icon(Icons.skip_next),
               onPressed: () {
-                List<Song> songs =
-                    Provider.of<RootChangeNotifier>(context, listen: false).songs;
-                int currentSongIndex =
-                    Provider.of<RootChangeNotifier>(context, listen: false)
-                        .currentSongIndex;
-                int nextSongIndex = (currentSongIndex + 1) % songs.length;
-                Provider.of<RootChangeNotifier>(context, listen: false)
-                    .webViewController?.evaluateJavascript(
-                    source: 'loadVideoById("${songs[nextSongIndex].movie.movieId}", ${songs[nextSongIndex].time});'
-                );
-                Provider.of<RootChangeNotifier>(context, listen: false)
-                    .setCurrentSongIndex(nextSongIndex);
+                Provider.of<RootChangeNotifier>(context, listen: false).seekNext();
               },
             ),
             IconButton(
